@@ -26,7 +26,7 @@ def generate_prompt(modelname, word, example, few = {"k":0}):
 
 
 
-def generate_promptV2(modelname, tokenizer,word, example, pos,fewN, fewV):
+def generate_promptV2(modelname, tokenizer,word, example, pos,fewN, fewV, tokenize = False):
     if pos == "N":
         few = fewN
         word_type = "noun"
@@ -50,7 +50,7 @@ def generate_promptV2(modelname, tokenizer,word, example, pos,fewN, fewV):
     
     else:
         assert False
-    prompt = tokenizer.apply_chat_template(chat, tokenize=False, add_generation_prompt=True)
+    prompt = tokenizer.apply_chat_template(chat, tokenize=tokenize, add_generation_prompt=True)
     return prompt
 
 

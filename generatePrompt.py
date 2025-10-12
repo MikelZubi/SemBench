@@ -26,7 +26,7 @@ def generate_prompt(modelname, word, example, few = {"k":0}):
 
 
 
-def generate_promptV2(modelname,tokenizer,word, example, few = {"k":0}):
+def generate_promptV2(modelname,tokenizer,word, example, few = {"k":0},tokenize=False):
     f = open('modelsData.json')
     data = json.load(f)[modelname]
     if data["type"] == "Instruct":
@@ -44,5 +44,5 @@ def generate_promptV2(modelname,tokenizer,word, example, few = {"k":0}):
     
     else:
         assert False
-    prompt = tokenizer.apply_chat_template(chat, tokenize=False)
+    prompt = tokenizer.apply_chat_template(chat, tokenize=tokenize)
     return prompt

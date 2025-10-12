@@ -10,6 +10,7 @@ from sklearn.metrics import precision_recall_curve, accuracy_score
 from generatePrompt import generate_promptV2
 import os
 import numpy as np
+from transformers import AutoModelForCausalLM, BitsAndBytesConfig
 
 
 
@@ -19,6 +20,11 @@ def random_line(fname):
 
 
 def testModels(word, example1, example2, POS, tag, pipeline, tokenizer, sb, file, modelname, fewN, fewV):
+
+    if modelname == "Llama3_70B" or modelname == "Llama3LORA_DEF":
+        batch_size = 1
+    else:
+        batch_size = 2
 
     prompt1 = generate_promptV2(modelname,tokenizer,word,example1, POS, fewN, fewV)
     prompt2 = generate_promptV2(modelname,tokenizer,word,example2, POS, fewN, fewV)      
@@ -31,7 +37,7 @@ def testModels(word, example1, example2, POS, tag, pipeline, tokenizer, sb, file
         num_return_sequences=1,
         eos_token_id=terminators,
         max_new_tokens=140,
-        batch_size = 2
+        batch_size = batch_size, #Put 1 if error
     )
 
     seq1 = sequences[0]
@@ -39,7 +45,15 @@ def testModels(word, example1, example2, POS, tag, pipeline, tokenizer, sb, file
     output1 = seq1[0]['generated_text']
     output2 = seq2[0]['generated_text']
     def1 = output1[len(prompt1):]
+    if "assistant\n\n" == def1[:11]:
+        def1 = def1[11:]
+    elif "assistant\n" == def1[:10]:
+        def1 = def1[10:]
     def2 = output2[len(prompt2):]
+    if "assistant\n\n" == def2[:11]:
+        def2 = def2[11:]
+    elif "assistant\n" == def2[:10]:
+        def2 = def2[10:]
     embeddings1 = sb.encode(def1, convert_to_tensor=True)
     embeddings2 = sb.encode(def2, convert_to_tensor=True)
     defexample1 = "Word: " + word + "\nDefinition: " + def1 + "\nExample: " + example1
@@ -189,15 +203,25 @@ if __name__ == "__main__":
     filenameTest = filename[:-5] + "_test"+fewpath+".json"
     filenameResult = filename[:-5] + "_result"+fewpath+".txt"
 
-    tokenizer = AutoTokenizer.from_pretrained(modelpath)
+    tokenizer = AutoTokenizer.from_pretrained(modelpath, padding_side='right')
     sb = SentenceTransformer('sentence-transformers/all-mpnet-base-v2')
+    tokenizer.pad_token = tokenizer.eos_token
+    tokenizer.pad_token_id = tokenizer.eos_token_id
+    if modelname == "Llama3_70B":
+        #quantization_config = QuantoConfig(weights="int8")
+        model = AutoModelForCausalLM.from_pretrained(modelpath,load_in_8bit=True)
+    else:
+        model = AutoModelForCausalLM.from_pretrained(modelpath, torch_dtype = torch.bfloat16)
+    #model = model.to("cuda")
+    #model.eval()
     pipeline = transformers.pipeline(
         "text-generation",
-        model=modelpath,
+        model=model,
         torch_dtype=torch.bfloat16,
-        device_map="auto",
+        tokenizer=tokenizer,
+        device=0
     )
-    pipeline.tokenizer.pad_token_id = pipeline.model.config.eos_token_id # Hack to fix a bug in transformers (batch_size)
+    #pipeline.tokenizer.pad_token_id = pipeline.model.config.eos_token_id # Hack to fix a bug in transformers (batch_size)
     useModels(pipeline,tokenizer,sb,filenameDev,words,sentences1,sentences2,POSs,tags,modelname,fewN, fewV)
     regrDot = calculateThrshold(filenameDev, "dot")
     regrDotE = calculateThrshold(filenameDev, "dotE")
@@ -214,6 +238,7 @@ if __name__ == "__main__":
     dotvalue = estimate(filenameTest, regrDot, "dot")
     dotvalueE = estimate(filenameTest, regrDotE, "dotE")
     file = open(filenameResult, "w",encoding='utf-8')
+    print(dotvalue)
     file.write("Definition: " +str(dotvalue) + "\n")
     file.write("Definition + Context: " +str(dotvalueE) + "\n")
     file.close()
