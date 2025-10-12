@@ -122,3 +122,69 @@ def generate_promptExampleDef(modelname, tokenizer, word, example, definition, p
         assert False
     prompt = tokenizer.apply_chat_template(chat, tokenize=False, add_generation_prompt=True)
     return prompt
+
+
+def generate_promptV2(modelname, tokenizer, word, example, pos, fewN, fewV, tokenize = False):
+    if pos == "N":
+        few = fewN
+        word_type_es = "sustantivo"
+    else:
+        few = fewV
+        word_type_es = "verbo"
+
+    f = open('modelsData.json')
+    data = json.load(f)[modelname]
+
+    if data["type"] == "Instruct":
+        chat = []
+        for i in range(few["k"]):
+            chat.append({
+                "role": "user",
+                "content": (
+                    "Como lexicógrafo experto en español, genera una definición de diccionario del "
+                    + word_type_es + " '" + few["words"][i] + "' en el sentido de este ejemplo '"
+                    + few["examples"][i][0] + "'. Proporciona SOLO la definición, sin nada más."
+                )
+            })
+            chat.append({"role": "assistant", "content": few["definitions"][i]})
+        chat.append({
+            "role": "user",
+            "content": (
+                "Como lexicógrafo experto en español, genera una definición de diccionario del "
+                + word_type_es + " '" + word + "' en el sentido de este ejemplo '" + example
+                + "'. Proporciona SOLO la definición, sin nada más."
+            )
+        })
+
+    elif data["type"] == "Chat":
+        chat = [{
+            "role": "system",
+            "content": (
+                "Eres un lexicógrafo experto en español. Genera una definición de diccionario de una palabra a partir de un ejemplo de uso. Por favor, PROPORCIONA SOLO la definición, sin más explicación."
+            )
+        }]
+        for i in range(few["k"]):
+            chat.append({
+                "role": "user",
+                "content": (
+                    "Dado el " + word_type_es + " '" + few["words"][i] +
+                    "' y el siguiente ejemplo: '" + few["examples"][i][0] +
+                    "', genera la definición del término en ese sentido. Proporciona SOLO la definición, "
+                    "sin más explicación."
+                )
+            })
+            chat.append({"role": "assistant", "content": few["definitions"][i]})
+        chat.append({
+            "role": "user",
+            "content": (
+                "Dado el " + word_type_es + " '" + word + "' y el siguiente ejemplo: '"
+                + example + "', genera la definición del término en ese sentido. Proporciona SOLO la "
+                "definición, sin más explicación."
+            )
+        })
+
+    else:
+        assert False
+
+    prompt = tokenizer.apply_chat_template(chat, tokenize=tokenize, add_generation_prompt=True)
+    return prompt

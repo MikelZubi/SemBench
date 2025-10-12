@@ -7,10 +7,11 @@ import json
 import sys
 from tqdm import tqdm
 from sklearn.metrics import accuracy_score
-from generatePrompt import generate_promptV2
+from prompt_factory import get_promptFactory
 import os
 import numpy as np
 from transformers import AutoModelForCausalLM, BitsAndBytesConfig
+import argparse
 
 
 
@@ -22,7 +23,7 @@ def testModels(word, example, POS, label, def1,def2, pipeline, tokenizer, sb, fi
         batch_size = 1
     else:
         batch_size = 2
-    prompt1 = generate_promptV2(modelname,tokenizer,word,example, POS, fewN, fewV)
+    prompt1 = PROMPT.generate_promptV2(modelname,tokenizer,word,example, POS, fewN, fewV)
     terminators = [
     pipeline.tokenizer.eos_token_id,
     pipeline.tokenizer.convert_tokens_to_ids("<|eot_id|>")]  
@@ -82,10 +83,23 @@ def estimate(path):
 
 if __name__ == "__main__":
     rd.seed(16)
-    modelname = sys.argv[1]
-    k = int(sys.argv[2])
-    if sys.argv[3] == "WN":
-        fewpath = "WN"
+
+    parser = argparse.ArgumentParser(description='WSD evaluation script')
+    parser.add_argument('model', type=str, help='Name of the model to use')
+    parser.add_argument('k', type=int, help='Number of shots for few-shot learning')
+    parser.add_argument('language', type=str, help='The languages that will be evaluated: "EN" for English, "ES" for Spanish')
+
+    parser.set_defaults(language="EN")
+    parser.set_defaults(k=5)
+    args = parser.parse_args()
+
+    PROMPT = get_promptFactory(args.language)
+
+    modelname = args.model
+    k = args.k
+    language = args.language
+    if language == "ES":
+        fewpath = "ES"
     else:
         fewpath = ""
     with open("modelsData.json", "r") as jsonfile:

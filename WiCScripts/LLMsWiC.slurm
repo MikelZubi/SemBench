@@ -67,13 +67,13 @@ echo "MistralDPO"
 #srun python WiCScripts/LLMsWiC.py MistralDPO 4 Oxford
 #srun python WiCScripts/LLMsWiC.py MistralDPO 5 Oxford
 
-echo "Llama3_70B"
+#echo "Llama3_70B"
 #python WiCScripts/LLMsWiCVLLM.py Llama3_70B 0 Oxford
-python WiCScripts/LLMsWiCVLLM.py Llama3_70B 1 Oxford
-python WiCScripts/LLMsWiCVLLM.py Llama3_70B 2 Oxford
-python WiCScripts/LLMsWiCVLLM.py Llama3_70B 3 Oxford
-python WiCScripts/LLMsWiCVLLM.py Llama3_70B 4 Oxford
-python WiCScripts/LLMsWiCVLLM.py Llama3_70B 5 Oxford
+#python WiCScripts/LLMsWiCVLLM.py Llama3_70B 1 Oxford
+#python WiCScripts/LLMsWiCVLLM.py Llama3_70B 2 Oxford
+#python WiCScripts/LLMsWiCVLLM.py Llama3_70B 3 Oxford
+#python WiCScripts/LLMsWiCVLLM.py Llama3_70B 4 Oxford
+#python WiCScripts/LLMsWiCVLLM.py Llama3_70B 5 Oxford
 
 
 echo "Llama2"
@@ -82,7 +82,7 @@ echo "Llama2"
 #srun python WiCScripts/LLMsWiC.py Llama2 2 Oxford
 #srun python WiCScripts/LLMsWiC.py Llama2 3 Oxford
 #srun python WiCScripts/LLMsWiC.py Llama2 4 Oxford
-#srun python WiCScripts/LLMsWiC.py Llama2 5 Oxford
+srun python WiCScripts/LLMsWiC.py --modelname Llama2 --k 5 --language ES
 
 echo "Def_model"
 #srun python WiCScripts/LLMsWiC.py Llama3LORA_DEF 0 Oxford
@@ -93,7 +93,7 @@ echo "Gemma2 9B"
 #srun python WiCScripts/LLMsWiC.py Gemma2_9B 2 Oxford
 #srun python WiCScripts/LLMsWiC.py Gemma2_9B 3 Oxford
 #srun python WiCScripts/LLMsWiC.py Gemma2_9B 4 Oxford
-#srun python WiCScripts/LLMsWiC.py Gemma2_9B 5 Oxford
+srun python WiCScripts/LLMsWiC.py Gemma2_9B 5 Oxford
 
 echo "Gemma2 27B"
 #srun python WiCScripts/LLMsWiC.py Gemma2_27B 0 Oxford
@@ -101,7 +101,7 @@ echo "Gemma2 27B"
 #srun python WiCScripts/LLMsWiC.py Gemma2_27B 2 Oxford
 #srun python WiCScripts/LLMsWiC.py Gemma2_27B 3 Oxford
 #srun python WiCScripts/LLMsWiC.py Gemma2_27B 4 Oxford
-#srun python WiCScripts/LLMsWiC.py Gemma2_27B 5 Oxford
+srun python WiCScripts/LLMsWiC.py Gemma2_27B 5 Oxford
 
 
 python WiCScripts/makeTable.py Oxford

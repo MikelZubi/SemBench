@@ -4,14 +4,14 @@ import transformers
 import torch
 import random as rd
 import json 
-import sys
+from prompt_factory import get_promptFactory
 from tqdm import tqdm
 from sklearn.metrics import precision_recall_curve, accuracy_score
 import os
 import numpy as np
-from transformers import AutoModelForCausalLM, BitsAndBytesConfig
 import argparse
-from prompt_factory import get_promptFactory
+
+from vllm import LLM, SamplingParams
 
 
 
@@ -67,11 +67,53 @@ def testModels(word, example1, example2, POS, tag, pipeline, tokenizer, sb, file
     file.write(json.dumps(dictionary, ensure_ascii=False) + "\n")
 
 
-def useModels(pipeline,tokenizer,sb,filename,words,sentences1,sentences2,POSs,tags,modelname,fewN, fewV):
+def useModels(llm,tokenizer,sb,filename,words,sentences1,sentences2,POSs,tags,modelname,fewN, fewV):
 
+    
+    print("Generate prompts")
+    prompt_sentence_1 = []
+    prompt_sentence_2 = []
+    for i in tqdm(range(len(words))):
+        prompt_sentence_1.append(PROMPT.generate_promptV2(modelname,tokenizer,words[i],sentences1[i], POSs[i], fewN, fewV, tokenize=True))
+        prompt_sentence_2.append(PROMPT.generate_promptV2(modelname,tokenizer,words[i],sentences2[i], POSs[i], fewN, fewV, tokenize=True))
+    terminators = [
+    tokenizer.eos_token_id,
+    tokenizer.convert_tokens_to_ids("<|eot_id|>")]
+    sampling_params = SamplingParams(temperature=0.0, stop_token_ids=terminators, max_tokens=140, n=1)
+    print("Generating definitions sentence 1")
+    results1 = llm.generate(prompt_token_ids=prompt_sentence_1, sampling_params=sampling_params)
+    definitions1 = []
+    for output in results1:
+        definitions1.append(output.outputs[0].text)
+    
+    print("Generating definitions sentence 2")
+    results2 = llm.generate(prompt_token_ids=prompt_sentence_2, sampling_params=sampling_params)
+    definitions2 = []
+    for output in results2:
+        definitions2.append(output.outputs[0].text)
+    
+    print("Evaluating")
     file = open(filename, "w",encoding='utf-8')
     for i in tqdm(range(len(words))):
-        testModels(words[i], sentences1[i], sentences2[i], POSs[i], tags[i], pipeline, tokenizer, sb, file, modelname, fewN, fewV)
+        def1 = definitions1[i]
+        def2 = definitions2[i]
+        embedding1 = sb.encode(def1, convert_to_tensor=True)
+        embedding2 = sb.encode(def2, convert_to_tensor=True)
+        defexample1 = "Word: " + words[i] + "\nDefinition: " + def1 + "\nExample: " + sentences1[i]
+        defexample2 = "Word: " + words[i] + "\nDefinition: " + def2 + "\nExample: " + sentences2[i]
+        embeddingE1 = sb.encode(defexample1, convert_to_tensor=True)
+        embeddingE2 = sb.encode(defexample2, convert_to_tensor=True)
+        dot_score = util.dot_score(embedding1, embedding2)[0][0].item()
+        dot_scoreE = util.dot_score(embeddingE1, embeddingE2)[0][0].item()
+        word = words[i]
+        example1 = sentences1[i]
+        example2 = sentences2[i]
+        PoS = POSs[i]
+        tag = tags[i]
+        if dot_score > dot_scoreE:
+            dot_scoreE = dot_score
+        dictionary = {"word": word, "POS": PoS, "sentence1": example1, "sentence2": example2, "def1": def1 , "def2": def2, "dot": dot_score, "dotE": dot_scoreE, "tag": tag}
+        file.write(json.dumps(dictionary, ensure_ascii=False) + "\n")
     file.close()
 
 def processWiC(line):
@@ -229,21 +271,13 @@ if __name__ == "__main__":
     tokenizer.pad_token = tokenizer.eos_token
     tokenizer.pad_token_id = tokenizer.eos_token_id
     if modelname == "Llama3_70B":
-        #quantization_config = QuantoConfig(weights="int8")
-        model = AutoModelForCausalLM.from_pretrained(modelpath,load_in_8bit=True)
+        llm = LLM(model=modelpath, tensor_parallel_size=2, gpu_memory_utilization=0.9)
     else:
-        model = AutoModelForCausalLM.from_pretrained(modelpath, torch_dtype = torch.bfloat16)
+        llm = LLM(model=modelpath, tensor_parallel_size=1, gpu_memory_utilization=0.9)
     #model = model.to("cuda")
     #model.eval()
-    pipeline = transformers.pipeline(
-        "text-generation",
-        model=model,
-        torch_dtype=torch.bfloat16,
-        tokenizer=tokenizer,
-        device=0
-    )
     #pipeline.tokenizer.pad_token_id = pipeline.model.config.eos_token_id # Hack to fix a bug in transformers (batch_size)
-    useModels(pipeline,tokenizer,sb,filenameDev,words,sentences1,sentences2,POSs,tags,modelname,fewN, fewV)
+    useModels(llm,tokenizer,sb,filenameDev,words,sentences1,sentences2,POSs,tags,modelname,fewN, fewV)
     regrDot = calculateThrshold(filenameDev, "dot")
     regrDotE = calculateThrshold(filenameDev, "dotE")
     WiC = open(data_test,"r").read().splitlines()
@@ -255,7 +289,7 @@ if __name__ == "__main__":
         sentences2.append(data["sentence2"])
         POSs.append(data["POS"])
         tags.append(gold[i])    
-    useModels(pipeline,tokenizer,sb,filenameTest,words,sentences1,sentences2,POSs,tags,modelname,fewN, fewV)
+    useModels(llm,tokenizer,sb,filenameTest,words,sentences1,sentences2,POSs,tags,modelname,fewN, fewV)
     dotvalue = estimate(filenameTest, regrDot, "dot")
     dotvalueE = estimate(filenameTest, regrDotE, "dotE")
     file = open(filenameResult, "w",encoding='utf-8')
