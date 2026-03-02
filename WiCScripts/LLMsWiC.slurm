@@ -1,14 +1,15 @@
 #!/bin/bash
-#SBATCH --partition=hitz-exclusive
-#SBATCH --account=hitz-exclusive
+#SBATCH --qos=regular
+##SBATCH --partition=hitz-exclusive
+##SBATCH --account=hitz-exclusive
 #SBATCH --job-name=WiC_LLM
 #SBATCH --cpus-per-task=8
 #SBATCH --nodes=1
 #SBATCH --ntasks-per-node=1
-#SBATCH --mem=128GB
-#SBATCH --gres=gpu:2
+#SBATCH --mem=200GB
+#SBATCH --gres=gpu:4
 #SBATCH --constraint=a100-sxm4
-#SBATCH --time=12:00:00
+#SBATCH --time=24:00:00
 #SBATCH --output=./SLURM/LOG/irteeraWiC.log
 #SBATCH --error=./SLURM/ERRORE/erroreWiC.err
 
@@ -17,95 +18,17 @@ module load Python
 source ~/inguruneak/GRAL/bin/activate
 
 huggingface-cli login --token $(cat tokenHF.txt)
-
-
-echo "Mistral"
-#srun python WiCScripts/LLMsWiC.py Mistral 0 Oxford
-#srun python WiCScripts/LLMsWiC.py Mistral 1 Oxford
-#srun python WiCScripts/LLMsWiC.py Mistral 2 Oxford
-#srun python WiCScripts/LLMsWiC.py Mistral 3 Oxford
-#srun python WiCScripts/LLMsWiC.py Mistral 4 Oxford
-#srun python WiCScripts/LLMsWiC.py Mistral 5 Oxford
-
-echo "Zephyr"
-#srun python WiCScripts/LLMsWiC.py Zephyr 0 Oxford
-#srun python WiCScripts/LLMsWiC.py Zephyr 1 Oxford
-#srun python WiCScripts/LLMsWiC.py Zephyr 2 Oxford
-#srun python WiCScripts/LLMsWiC.py Zephyr 3 Oxford
-#srun python WiCScripts/LLMsWiC.py Zephyr 4 Oxford
-#srun python WiCScripts/LLMsWiC.py Zephyr 5 Oxford
-
-echo "Starling"
-#srun python WiCScripts/LLMsWiC.py Starling 0 Oxford
-#srun python WiCScripts/LLMsWiC.py Starling 1 Oxford
-#srun python WiCScripts/LLMsWiC.py Starling 2 Oxford
-#srun python WiCScripts/LLMsWiC.py Starling 3 Oxford
-#srun python WiCScripts/LLMsWiC.py Starling 4 Oxford
-#srun python WiCScripts/LLMsWiC.py Starling 5 Oxford
-
-echo "Llama3"
-#srun python WiCScripts/LLMsWiC.py Llama3 0 Oxford
-#srun python WiCScripts/LLMsWiC.py Llama3 1 Oxford
-#srun python WiCScripts/LLMsWiC.py Llama3 2 Oxford
-#srun python WiCScripts/LLMsWiC.py Llama3 3 Oxford
-#srun python WiCScripts/LLMsWiC.py Llama3 4 Oxford
-#srun python WiCScripts/LLMsWiC.py Llama3 5 Oxford
-
-echo "OpenChat"
-#srun python WiCScripts/LLMsWiC.py OpenChat 0 Oxford
-#srun python WiCScripts/LLMsWiC.py OpenChat 1 Oxford
-#srun python WiCScripts/LLMsWiC.py OpenChat 2 Oxford
-#srun python WiCScripts/LLMsWiC.py OpenChat 3 Oxford
-#srun python WiCScripts/LLMsWiC.py OpenChat 4 Oxford
-#srun python WiCScripts/LLMsWiC.py OpenChat 5 Oxford
-
-echo "MistralDPO"
-#srun python WiCScripts/LLMsWiC.py MistralDPO 0 Oxford
-#srun python WiCScripts/LLMsWiC.py MistralDPO 1 Oxford
-#srun python WiCScripts/LLMsWiC.py MistralDPO 2 Oxford
-#srun python WiCScripts/LLMsWiC.py MistralDPO 3 Oxford
-#srun python WiCScripts/LLMsWiC.py MistralDPO 4 Oxford
-#srun python WiCScripts/LLMsWiC.py MistralDPO 5 Oxford
-
-#echo "Llama3_70B"
-#python WiCScripts/LLMsWiCVLLM.py Llama3_70B 0 Oxford
-#python WiCScripts/LLMsWiCVLLM.py Llama3_70B 1 Oxford
-#python WiCScripts/LLMsWiCVLLM.py Llama3_70B 2 Oxford
-#python WiCScripts/LLMsWiCVLLM.py Llama3_70B 3 Oxford
-#python WiCScripts/LLMsWiCVLLM.py Llama3_70B 4 Oxford
-#python WiCScripts/LLMsWiCVLLM.py Llama3_70B 5 Oxford
-
-
-echo "Llama2"
-#srun python WiCScripts/LLMsWiC.py Llama2 0 Oxford
-#srun python WiCScripts/LLMsWiC.py Llama2 1 Oxford
-#srun python WiCScripts/LLMsWiC.py Llama2 2 Oxford
-#srun python WiCScripts/LLMsWiC.py Llama2 3 Oxford
-#srun python WiCScripts/LLMsWiC.py Llama2 4 Oxford
-srun python WiCScripts/LLMsWiC.py --modelname Llama2 --k 5 --language ES
-
-echo "Def_model"
-#srun python WiCScripts/LLMsWiC.py Llama3LORA_DEF 0 Oxford
-
-echo "Gemma2 9B"
-#srun python WiCScripts/LLMsWiC.py Gemma2_9B 0 Oxford
-#srun python WiCScripts/LLMsWiC.py Gemma2_9B 1 Oxford
-#srun python WiCScripts/LLMsWiC.py Gemma2_9B 2 Oxford
-#srun python WiCScripts/LLMsWiC.py Gemma2_9B 3 Oxford
-#srun python WiCScripts/LLMsWiC.py Gemma2_9B 4 Oxford
-srun python WiCScripts/LLMsWiC.py Gemma2_9B 5 Oxford
-
-echo "Gemma2 27B"
-#srun python WiCScripts/LLMsWiC.py Gemma2_27B 0 Oxford
-#srun python WiCScripts/LLMsWiC.py Gemma2_27B 1 Oxford
-#srun python WiCScripts/LLMsWiC.py Gemma2_27B 2 Oxford
-#srun python WiCScripts/LLMsWiC.py Gemma2_27B 3 Oxford
-#srun python WiCScripts/LLMsWiC.py Gemma2_27B 4 Oxford
-srun python WiCScripts/LLMsWiC.py Gemma2_27B 5 Oxford
-
-
-python WiCScripts/makeTable.py Oxford
- 
+models=("Llama2" "Llama3_8B" "Llama3_70B" "Gemma3_4B" "Gemma3_12B" "Gemma3_27B" "Qwen3_8B" "Qwen3_14B" "Qwen3_32B" "Latxa_70B" "Latxa_8B" "Qwen3_4B")
+#models=("Latxa_8B" "Qwen3_4B")
+for model in "${models[@]}"; do
+    python WiCScripts/LLMsWiCVLLM.py --modelname $model --k 5 --language EU
+    python WiCScripts/LLMsWiCVLLM.py --modelname $model --k 5 --language ES
+    python WiCScripts/LLMsWiCVLLM.py --modelname $model --k 5 --language EN
+    python WiCScripts/LLMsWiCVLLM.py --modelname $model --k 0 --language EN
+    python WiCScripts/LLMsWiCVLLM.py --modelname $model --k 0 --language EU
+    python WiCScripts/LLMsWiCVLLM.py --modelname $model --k 0 --language ES
+    
+done
 
  
 

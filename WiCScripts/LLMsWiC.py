@@ -34,7 +34,7 @@ def testModels(word, example1, example2, POS, tag, pipeline, tokenizer, sb, file
     pipeline.tokenizer.convert_tokens_to_ids("<|eot_id|>")]  
     sequences = pipeline(
         [prompt1,prompt2],
-        do_sample=True,
+        do_sample=False,
         num_return_sequences=1,
         eos_token_id=terminators,
         max_new_tokens=140,
@@ -141,9 +141,9 @@ def estimate(path, thresh, key):
 if __name__ == "__main__":
     rd.seed(16)
     parser = argparse.ArgumentParser(description='WSD evaluation script')
-    parser.add_argument('model', type=str, help='Name of the model to use')
-    parser.add_argument('k', type=int, help='Number of shots for few-shot learning')
-    parser.add_argument('language', type=str, help='The languages that will be evaluated: "EN" for English, "ES" for Spanish')
+    parser.add_argument('--modelname', type=str, help='Name of the model to use')
+    parser.add_argument('--k', type=int, help='Number of shots for few-shot learning')
+    parser.add_argument('--language', type=str, help='The languages that will be evaluated: "EN" for English, "ES" for Spanish')
 
     parser.set_defaults(language="EN")
     parser.set_defaults(k=5)
@@ -151,7 +151,7 @@ if __name__ == "__main__":
 
     PROMPT = get_promptFactory(args.language)
 
-    modelname = args.model
+    modelname = args.modelname
     k = args.k
     language = args.language
     if language == "ES":
@@ -220,12 +220,15 @@ if __name__ == "__main__":
         sentences2.append(data["sentence2"])
         POSs.append(data["POS"])
         tags.append(gold[i])
-    filenameDev = filename[:-5] + "_dev"+fewpath+".json"
-    filenameTest = filename[:-5] + "_test"+fewpath+".json"
-    filenameResult = filename[:-5] + "_result"+fewpath+".txt"
+    filenameDev = filename[:-5] + "_dev.json"
+    filenameTest = filename[:-5] + "_test.json"
+    filenameResult = filename[:-5] + "_result.txt"
 
     tokenizer = AutoTokenizer.from_pretrained(modelpath, padding_side='right')
-    sb = SentenceTransformer('sentence-transformers/all-mpnet-base-v2')
+    if language == "EN":
+        sb = SentenceTransformer('sentence-transformers/all-mpnet-base-v2')
+    else:
+        sb = SentenceTransformer("google/embeddinggemma-300m")
     tokenizer.pad_token = tokenizer.eos_token
     tokenizer.pad_token_id = tokenizer.eos_token_id
     if modelname == "Llama3_70B":

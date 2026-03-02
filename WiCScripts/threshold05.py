@@ -10,7 +10,7 @@ def threshold05(input_file, output_file):
         f.write("Definition: " + str(accuracy) + "\n")
 
 if __name__ == "__main__":
-    model_names=["Mistral", "Zephyr", "Starling", "Llama2", "MistralDPO", "Llama3", "Llama3_70B", "Llama3LORA_DEF", "Gemma2_9B", "Gemma2_27B"]  # Update with your model names
+    model_names=["Llama2", "Llama3_8B", "Llama3_70B", "Gemma3_4B", "Gemma3_12B", "Gemma3_27B", "Qwen3_8B", "Qwen3_14B", "Qwen3_32B", "Latxa_70B", "Latxa_8B", "Qwen3_4B"]  # Update with your model names
     number_of_shots = [0,5]
     for modelname in model_names:
         for shots in number_of_shots:

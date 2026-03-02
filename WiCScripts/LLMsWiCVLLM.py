@@ -4,6 +4,8 @@ import transformers
 import torch
 import random as rd
 import json 
+import sys
+sys.path.append("prompts")
 from prompt_factory import get_promptFactory
 from tqdm import tqdm
 from sklearn.metrics import precision_recall_curve, accuracy_score
@@ -11,7 +13,7 @@ import os
 import numpy as np
 import argparse
 
-from vllm import LLM, SamplingParams
+from vllm import LLM, SamplingParams, inputs
 
 
 
@@ -74,28 +76,36 @@ def useModels(llm,tokenizer,sb,filename,words,sentences1,sentences2,POSs,tags,mo
     prompt_sentence_1 = []
     prompt_sentence_2 = []
     for i in tqdm(range(len(words))):
-        prompt_sentence_1.append(PROMPT.generate_promptV2(modelname,tokenizer,words[i],sentences1[i], POSs[i], fewN, fewV, tokenize=True))
-        prompt_sentence_2.append(PROMPT.generate_promptV2(modelname,tokenizer,words[i],sentences2[i], POSs[i], fewN, fewV, tokenize=True))
-    terminators = [
-    tokenizer.eos_token_id,
-    tokenizer.convert_tokens_to_ids("<|eot_id|>")]
-    sampling_params = SamplingParams(temperature=0.0, stop_token_ids=terminators, max_tokens=140, n=1)
+        prompt_sentence_1.append(inputs.TokensPrompt({"prompt_token_ids": PROMPT.generate_promptV2(modelname,tokenizer,words[i],sentences1[i], POSs[i], fewN, fewV, tokenize=True)}))
+        prompt_sentence_2.append(inputs.TokensPrompt({"prompt_token_ids": PROMPT.generate_promptV2(modelname,tokenizer,words[i],sentences2[i], POSs[i], fewN, fewV, tokenize=True)}))
+    terminators = [tokenizer.eos_token_id]
+    sampling_params = SamplingParams(temperature=0.0, stop_token_ids=terminators, max_tokens=2000, n=1)
     print("Generating definitions sentence 1")
-    results1 = llm.generate(prompt_token_ids=prompt_sentence_1, sampling_params=sampling_params)
+    results1 = llm.generate(prompt_sentence_1, sampling_params=sampling_params)
     definitions1 = []
     for output in results1:
-        definitions1.append(output.outputs[0].text)
+        text = output.outputs[0].text
+        if "</think>" in text:
+            text = text.split("</think>")[-1]
+        definitions1.append(text)
     
     print("Generating definitions sentence 2")
-    results2 = llm.generate(prompt_token_ids=prompt_sentence_2, sampling_params=sampling_params)
+    results2 = llm.generate(prompt_sentence_2, sampling_params=sampling_params)
     definitions2 = []
     for output in results2:
-        definitions2.append(output.outputs[0].text)
+        text = output.outputs[0].text
+        if "</think>" in text:
+            text = text.split("</think>")[-1]
+        definitions2.append(text)
     
     print("Evaluating")
     file = open(filename, "w",encoding='utf-8')
     for i in tqdm(range(len(words))):
+        if "</think>" in definitions1[i]:
+            definitions1[i] = definitions1[i].split("</think>")[-1]
         def1 = definitions1[i]
+        if "</think>" in definitions2[i]:
+            definitions2[i] = definitions2[i].split("</think>")[-1]
         def2 = definitions2[i]
         embedding1 = sb.encode(def1, convert_to_tensor=True)
         embedding2 = sb.encode(def2, convert_to_tensor=True)
@@ -183,9 +193,9 @@ def estimate(path, thresh, key):
 if __name__ == "__main__":
     rd.seed(16)
     parser = argparse.ArgumentParser(description='WSD evaluation script')
-    parser.add_argument('model', type=str, help='Name of the model to use')
-    parser.add_argument('k', type=int, help='Number of shots for few-shot learning')
-    parser.add_argument('language', type=str, help='The languages that will be evaluated: "EN" for English, "ES" for Spanish')
+    parser.add_argument('--modelname', type=str, help='Name of the model to use')
+    parser.add_argument('--k', type=int, help='Number of shots for few-shot learning')
+    parser.add_argument('--language', type=str, help='The languages that will be evaluated: "EN" for English, "ES" for Spanish')
 
     parser.set_defaults(language="EN")
     parser.set_defaults(k=5)
@@ -193,7 +203,7 @@ if __name__ == "__main__":
 
     PROMPT = get_promptFactory(args.language)
 
-    modelname = args.model
+    modelname = args.modelname
     k = args.k
     language = args.language
     if language == "ES":
@@ -202,6 +212,12 @@ if __name__ == "__main__":
         gold_dev = "WiC/dev/dev.es.gold.txt"
         gold_test = "WiC/test/test.es.gold.txt"
         fewpath = "ES"
+    elif language == "EU":
+        data_dev = "WiC/dev/dev.eu.data.txt"
+        data_test = "WiC/test/test.eu.data.txt"
+        gold_dev = "WiC/dev/dev.eu.gold.txt"
+        gold_test = "WiC/test/test.eu.gold.txt"
+        fewpath = "EU"
     else:
         data_dev = "WiC/dev/dev.data.txt"
         data_test = "WiC/test/test.data.txt"
@@ -262,18 +278,15 @@ if __name__ == "__main__":
         sentences2.append(data["sentence2"])
         POSs.append(data["POS"])
         tags.append(gold[i])
-    filenameDev = filename[:-5] + "_dev"+fewpath+".json"
-    filenameTest = filename[:-5] + "_test"+fewpath+".json"
-    filenameResult = filename[:-5] + "_result"+fewpath+".txt"
+    filenameDev = filename[:-5] + "_dev.json"
+    filenameTest = filename[:-5] + "_test.json"
+    filenameResult = filename[:-5] + "_result.txt"
 
     tokenizer = AutoTokenizer.from_pretrained(modelpath, padding_side='right')
-    sb = SentenceTransformer('sentence-transformers/all-mpnet-base-v2')
+    sb = SentenceTransformer("google/embeddinggemma-300m")
     tokenizer.pad_token = tokenizer.eos_token
     tokenizer.pad_token_id = tokenizer.eos_token_id
-    if modelname == "Llama3_70B":
-        llm = LLM(model=modelpath, tensor_parallel_size=2, gpu_memory_utilization=0.9)
-    else:
-        llm = LLM(model=modelpath, tensor_parallel_size=1, gpu_memory_utilization=0.9)
+    llm = LLM(model=modelpath, tensor_parallel_size=4, gpu_memory_utilization=0.8)
     #model = model.to("cuda")
     #model.eval()
     #pipeline.tokenizer.pad_token_id = pipeline.model.config.eos_token_id # Hack to fix a bug in transformers (batch_size)

@@ -315,45 +315,132 @@ class BenchmarkBootstrapAnalyzer:
     
     def plot_ranking_stability(self, save_path: str = None):
         """Plot how ranking correlation changes with benchmark length."""
-        fig, axes = plt.subplots(2, 2, figsize=(15, 12))
-        fig.suptitle(f'Ranking Stability, {self.dataset_name} vs WiC Threshold 0.5 in 5-Shot Scenario', fontsize=16)
+        # Store results for later combined plotting
+        self.stability_plot_data = {
+            'dataset_name': self.dataset_name,
+            'difficulties': self.difficulties,
+            'results': self.results
+        }
+        return self.stability_plot_data
+    
+    @staticmethod
+    def plot_combined_ranking_stability(data_def, data_exp, save_path: str = None):
+        """
+        Create a combined plot with (2,4) layout for Definition and Example analyses.
         
-        for idx, difficulty in enumerate(self.difficulties):
-            ax = axes[idx // 2, idx % 2]
-            
-            if 'ranking_stability' not in self.results[difficulty]:
-                continue
-            
-            lengths = []
-            means = []
-            ci_lower = []
-            ci_upper = []
-            
-            # Include all lengths including 1000
-            all_lengths = sorted(list(self.results[difficulty]['ranking_stability'].keys()))
-            
-            for length in all_lengths:
-                data = self.results[difficulty]['ranking_stability'][length]
-                lengths.append(length)
-                means.append(data['mean_correlation'])
-                ci_lower.append(data['ci_lower'])
-                ci_upper.append(data['ci_upper'])
-            
-            ax.plot(lengths, means, 'o-', linewidth=2, markersize=8, label='Mean Correlation')
-            ax.fill_between(lengths, ci_lower, ci_upper, alpha=0.3, label='95% CI')
-            
-            ax.set_xlabel('Benchmark Length', fontsize=12)
-            ax.set_ylabel('Spearman Correlation with Full Benchmark (1000)', fontsize=12)
-            ax.set_title(f'Difficulty: {difficulty}', fontsize=14)
-            ax.legend()
-            ax.grid(True, alpha=0.3)
-            ax.set_ylim([0, 1.05])
-            ax.axhline(y=1.0, color='gray', linestyle='--', alpha=0.5)
+        Args:
+            data_def: Plot data from Definition analysis
+            data_exp: Plot data from Example analysis
+            save_path: Path to save the figure
+        """
+        # Set style for publication quality
+        plt.style.use('seaborn-v0_8-paper')
+        sns.set_palette("colorblind")
+        sns.set_theme(style="whitegrid",context="paper")
         
-        plt.tight_layout()
+        fig, axes = plt.subplots(2, 4, figsize=(20, 10))
+        
+        # Main title
+        #fig.suptitle('Ranking Stability: Sembench vs WiC (Threshold 0.5, 5-Shot)', 
+        #             fontsize=18, fontweight='bold', y=0.98)
+        
+        # Row titles
+        #axes[0, 0].text(-0.3, 0.5, 'From Definition', fontsize=14,
+        #              rotation=90, transform=axes[0, 0].transAxes, 
+        #               verticalalignment='center', horizontalalignment='center')
+        #axes[1, 0].text(-0.3, 0.5, 'From Example', fontsize=14,
+        #               rotation=90, transform=axes[1, 0].transAxes, 
+        #               verticalalignment='center', horizontalalignment='center')
+        
+        # Color scheme for better aesthetics
+        color_mean = '#2E86AB'
+        #color_ci = '#A23B72'
+        difficulty_mapping = {'random':'RAND', 'easy': 'EASY', 'medium': 'MED', 'hard': 'HARD'}
+        # Process each difficulty level
+        for idx, difficulty in enumerate(data_def['difficulties']):
+            # Definition row (top) - column for each difficulty
+            ax_def = axes[0, idx]
+            
+            if 'ranking_stability' in data_def['results'][difficulty]:
+                lengths = []
+                means = []
+                ci_lower = []
+                ci_upper = []
+                
+                all_lengths = sorted(list(data_def['results'][difficulty]['ranking_stability'].keys()))
+                
+                for length in all_lengths:
+                    data = data_def['results'][difficulty]['ranking_stability'][length]
+                    lengths.append(length)
+                    means.append(data['mean_correlation'])
+                    ci_lower.append(data['ci_lower'])
+                    ci_upper.append(data['ci_upper'])
+                
+                # Plot with improved styling
+                ax_def.plot(lengths, means, 'o-', linewidth=2.5, markersize=9, 
+                           color=color_mean, label='Mean Correlation', markeredgewidth=1.5, 
+                           markeredgecolor='white')
+                ax_def.fill_between(lengths, ci_lower, ci_upper, alpha=0.25, 
+                                   color=color_mean, label='95% CI')
+                
+                # Styling
+                plot_difficulty = difficulty_mapping[difficulty]
+                ax_def.set_title(f'{plot_difficulty}', fontsize=21,  pad=10)
+                if idx == 0:
+                    ax_def.set_ylabel("From Definition ρ", fontsize=19)
+                ax_def.tick_params(labelsize=17)
+                ax_def.grid(True, alpha=0.5, linestyle='--', linewidth=1.2)
+                ax_def.set_ylim([0, 1.05])
+                ax_def.axhline(y=1.0, color='gray', linestyle='--', alpha=0.5, linewidth=1.5)
+            
+            # Example row (bottom) - column for each difficulty
+            ax_exp = axes[1, idx]
+            
+            if 'ranking_stability' in data_exp['results'][difficulty]:
+                lengths = []
+                means = []
+                ci_lower = []
+                ci_upper = []
+                
+                all_lengths = sorted(list(data_exp['results'][difficulty]['ranking_stability'].keys()))
+                
+                for length in all_lengths:
+                    data = data_exp['results'][difficulty]['ranking_stability'][length]
+                    lengths.append(length)
+                    means.append(data['mean_correlation'])
+                    ci_lower.append(data['ci_lower'])
+                    ci_upper.append(data['ci_upper'])
+                
+                # Plot with improved styling
+                ax_exp.plot(lengths, means, 'o-', linewidth=2.5, markersize=9, 
+                           color=color_mean, label='Mean Correlation', markeredgewidth=1.5,
+                           markeredgecolor='white')
+                ax_exp.fill_between(lengths, ci_lower, ci_upper, alpha=0.25, 
+                                   color=color_mean, label='95% CI')
+                
+                # Styling
+                if idx == 0:
+                    ax_exp.set_ylabel("From Example ρ", fontsize=19)
+                ax_exp.set_xlabel('Benchmark Size', fontsize=19)
+                ax_exp.tick_params(labelsize=17)
+                ax_exp.grid(True, alpha=0.5, linestyle='--', linewidth=1.2)
+                ax_exp.set_ylim([0, 1.05])
+                ax_exp.axhline(y=1.0, color='gray', linestyle='--', alpha=0.5, linewidth=1.5)
+        
+        # Create a single legend for the entire figure, placed at the top center
+        handles, labels = axes[0, 0].get_legend_handles_labels()
+        fig.legend(handles, labels, loc='upper center', ncol=len(labels), 
+                  frameon=True, shadow=False, fontsize=18, 
+                  bbox_to_anchor=(0.5, 1.015))
+
+        # Adjust layout to make room for the legend
+        plt.tight_layout(rect=[0, 0, 1, 0.95])
         
         if save_path:
-            plt.savefig(f"{save_path}/ranking_stability.png", dpi=300, bbox_inches='tight')
+            plt.savefig(f"{save_path}/combined_ranking_stability.png", 
+                       dpi=300, bbox_inches='tight', facecolor='white')
+            plt.savefig(f"{save_path}/combined_ranking_stability.pdf", 
+                       dpi=300, bbox_inches='tight', facecolor='white')
         plt.show()
     
     def plot_pairwise_correlation_heatmap(self, save_path: str = None):
@@ -515,7 +602,8 @@ class BenchmarkBootstrapAnalyzer:
         
         print(f"\nReport saved to {output_file}")
     
-    def run_full_analysis(self, save_plots: bool = True, plot_path: str = "./plots"):
+    def run_full_analysis(self, save_plots: bool = True, plot_path: str = "./plots", 
+                          generate_individual_plots: bool = False):
         """Run the complete ranking correlation analysis pipeline."""
         if save_plots:
             Path(plot_path).mkdir(parents=True, exist_ok=True)
@@ -525,14 +613,16 @@ class BenchmarkBootstrapAnalyzer:
         self.analyze_ranking_correlation_between_lengths()
         
         print("\nGenerating visualizations...")
-        self.plot_ranking_stability(save_path=plot_path if save_plots else None)
-        self.plot_pairwise_correlation_heatmap(save_path=plot_path if save_plots else None)
-        self.plot_ranking_distributions(save_path=plot_path if save_plots else None)
+        plot_data = self.plot_ranking_stability(save_path=plot_path if save_plots else None)
+        
+        if generate_individual_plots:
+            self.plot_pairwise_correlation_heatmap(save_path=plot_path if save_plots else None)
+            self.plot_ranking_distributions(save_path=plot_path if save_plots else None)
         
         self.generate_report()
         
         print("\nAnalysis complete!")
-        return self.results
+        return self.results, plot_data
         
 
     
@@ -541,38 +631,61 @@ class BenchmarkBootstrapAnalyzer:
 
 # Example usage
 if __name__ == "__main__":
-    # Configure your analysis
-    analyzer = BenchmarkBootstrapAnalyzer(
-        data_path="WSDOutputs/5Shot/",  # Update this path
+    # Configure your analysis for Examples
+    analyzer_exp = BenchmarkBootstrapAnalyzer(
+        data_path="WSDOutputs/5Shot/",
         gold_path="WiCOutputs/5Shot/",
-        model_names=["Mistral", "Zephyr", "Starling", "Llama2", "MistralDPO", "Llama3", "Llama3_70B", "Gemma2_9B", "Gemma2_27B"],  # Update with your model names
-        difficulties=['random', 'easy', 'medium', 'hard'],
+        model_names=["Llama2", "Llama3_8B", "Llama3_70B", "Gemma3_4B", "Gemma3_12B", 
+                     "Gemma3_27B", "Qwen3_4B","Qwen3_8B", "Qwen3_14B", "Qwen3_32B", 
+                     "Latxa_8B", "Latxa_70B"],
         lengths=[50, 100, 200, 500, 1000],
-        n_bootstrap=50,
+        n_bootstrap=100,
         random_seed=42,
-        dataset_name="Sembench_Def"
+        dataset_name="Sembench from Example"
     )
     
-    # Run the complete analysis
-    results = analyzer.run_full_analysis(save_plots=True, plot_path="./bootstrap_plots_SMB_Def")
+    # Run the analysis for Examples
+    print("Running analysis for Sembench from Example...")
+    results_exp, plot_data_exp = analyzer_exp.run_full_analysis(
+        save_plots=True, 
+        plot_path="./bootstrap_plots_SMB_Exp",
+        generate_individual_plots=False
+    )
 
-    analyzer = BenchmarkBootstrapAnalyzer(
-        data_path="WSDEOutputs/5Shot/",  # Update this path
+    # Configure your analysis for Definitions
+    analyzer_def = BenchmarkBootstrapAnalyzer(
+        data_path="WSDEOutputs/5Shot/",
         gold_path="WiCOutputs/5Shot/",
-        model_names=["Mistral", "Zephyr", "Starling", "Llama2", "MistralDPO", "Llama3", "Llama3_70B", "Gemma2_9B", "Gemma2_27B"],  # Update with your model names
-        difficulties=['random', 'easy', 'medium', 'hard'],
+        model_names=["Llama2", "Llama3_8B", "Llama3_70B", "Gemma3_4B", "Gemma3_12B", 
+                     "Gemma3_27B", "Qwen3_4B","Qwen3_8B", "Qwen3_14B", "Qwen3_32B", 
+                     "Latxa_8B", "Latxa_70B"],
         lengths=[50, 100, 200, 500, 1000],
-        n_bootstrap=50,
+        n_bootstrap=100,
         random_seed=42,
-        dataset_name="Sembench_Exp"
+        dataset_name="Sembench from Definition"
     )
     
-    # Run the complete analysis
-    results = analyzer.run_full_analysis(save_plots=True, plot_path="./bootstrap_plots_SMB_Exp")
+    # Run the analysis for Definitions
+    print("\nRunning analysis for Sembench from Definition...")
+    results_def, plot_data_def = analyzer_def.run_full_analysis(
+        save_plots=True, 
+        plot_path="./bootstrap_plots_SMB_Def",
+        generate_individual_plots=False
+    )
+    
+    # Create combined plot
+    print("\nGenerating combined plot...")
+    Path("./bootstrap_plots_combined").mkdir(parents=True, exist_ok=True)
+    BenchmarkBootstrapAnalyzer.plot_combined_ranking_stability(
+        plot_data_def, 
+        plot_data_exp, 
+        save_path="./bootstrap_plots_combined"
+    )
+    
+    print("\nAll analyses complete! Combined plot saved to ./bootstrap_plots_combined/")
     
     # Access specific results if needed
     # For example: results['easy']['ranking_stability'][100]
-    
-   
-    
-    
+
+
+

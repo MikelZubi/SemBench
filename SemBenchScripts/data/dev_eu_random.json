@@ -1,0 +1,200 @@
+{"word": "osin", "POS": "izena", "label": 0, "definitions": ["asuna.", "putzua."], "example": "i"}
+{"word": "puskaketa", "POS": "izena", "label": 1, "definitions": ["puskatzea.", "pusken garraioa."], "example": "e"}
+{"word": "kolokatu", "POS": "aditza", "label": 0, "definitions": ["jarri, kokatu.", "koloka jarri."], "example": "a"}
+{"word": "prozesatu", "POS": "aditza", "label": 0, "definitions": ["auzipetu.", "zerbaiti operazio multzo jakin bat igaroarazi."], "example": "u"}
+{}
+{"word": "hauste", "POS": "izena", "label": 1, "definitions": ["puska edo zatietan bereiztea.", "hauster eguna."], "example": "t"}
+{"word": "mantar", "POS": "izena", "label": 0, "definitions": ["emakumeen atorra.", "marranta."], "example": "r"}
+{"word": "tanke", "POS": "izena", "label": 1, "definitions": ["likidoen eta gasen biltegia.", "kanoi eta su armez hornituriko gudu orga blindatua."], "example": "u"}
+{"word": "zinbel", "POS": "izena", "label": 1, "definitions": ["ehiztarien txoria, beste txoriak erakartzeko erabiltzen dena.", "zakila."], "example": "i"}
+{"word": "klip", "POS": "izena", "label": 0, "definitions": ["paper esteka.", "bideo-klipa."], "example": "a"}
+{}
+{"word": "dieta", "POS": "izena", "label": 0, "definitions": ["bizilekutik kanpo ari den pertsonari eguneko ordaintzen zaiona.", "jaki jakin batzuk baino ez hartzea."], "example": "k"}
+{"word": "otarte", "POS": "izena", "label": 1, "definitions": ["ogitartekoa.", "ote artea."], "example": "k"}
+{"word": "pinta", "POS": "izena", "label": 1, "definitions": ["eduki neurri zaharra, pitxerraren erdia balio zuena.", "tanta, orbana."], "example": "z"}
+{"word": "porru", "POS": "izena", "label": 0, "definitions": ["abakoa eta marihuana nahasiz egiten den zigarreta.", "baratxuriaren familiako landarea, baratzean lantzen dena, erraboila luzea eta bakuna, hostoak lauak, luzeak eta meharrak, eta loreak zuri gorrixkak dituena, egosia jaten dena (Allium porrum)."], "example": "e"}
+{"word": "platano", "POS": "izena", "label": 0, "definitions": ["banana.", "zuhaitz sendo eta itzaltsua, azala xafla erorkorrez osatua duena, bost puntako hosto zabalak eta fruitu biribilak eta haziz beteak dituena (Platanus acerifolia edo hibrida)."], "example": "i"}
+{"word": "errepasa", "POS": "izena", "label": 1, "definitions": ["janaldia, otordua.", "abestiez eta kidekoez mintzatuz, errepasatzea."], "example": "P"}
+{"word": "tinbre", "POS": "izena", "label": 0, "definitions": ["txirrina.", "zigilua."], "example": "t"}
+{"word": "koko", "POS": "izena", "label": 1, "definitions": ["kokondoaren fruitua, handia eta oskol-gogorra, barrualdean ur gozo bat eta, oskolari atxikia, mami zuri oliotsua, jateko ona, duena.", "zomorroa."], "example": "s"}
+{"word": "mika", "POS": "izena", "label": 0, "definitions": ["belearen familiako hegaztia, buztan-luzea, hegoak eta gainaldea beltz distiratsuak eta sabelaldea zuria dituena (Pica pica eta abar).", "kristal itxurako mea, xafla garden eta malguetan zatitzen den silikato naturala."], "example": "g"}
+{"word": "itundu", "POS": "aditza", "label": 0, "definitions": ["ituna egin, hitzartu.", "ilundu, goibeldu."], "example": " "}
+{}
+{}
+{"word": "txinga", "POS": "izena", "label": 0, "definitions": ["zirgilo finkoa.", "txinga-eroate kirolan erabiltzen den pisua."], "example": "a"}
+{"word": "karanbola", "POS": "izena", "label": 0, "definitions": ["billar jokoan, bola batekin beste biak jotzea, edo jo den bakarrak hirugarrena jotzea lortzean gertatzen den jokaldia.", "zuhaitz tropikalaren fruitua, horia eta dasta garratzekoa."], "example": "a"}
+{"word": "gidoin", "POS": "izena", "label": 0, "definitions": ["gidagailua.", "bandera modukoa."], "example": "a"}
+{"word": "lata", "POS": "izena", "label": 1, "definitions": ["teilatuetan, teilen euskarri, ipintzen den ohol mehe eta luzea.", "latorrizko ontzia; batez ere, kontserbak gordetzeko erabiltzen dena."], "example": "r"}
+{"word": "delfin", "POS": "izena", "label": 0, "definitions": ["Frantzian, erregeren premua.", "izurdea."], "example": "m"}
+{"word": "organo", "POS": "izena", "label": 1, "definitions": ["organismo bizi baten zatia, betekizun jakin bat duena.", "haize musika-tresna handia, hauspo bidez bultzaturiko haizeak soinua eginarazten dien hodiez osatua eta klabier bat edo gehiagoren bidez jotzen dena."], "example": "k"}
+{"word": "karraka", "POS": "izena", "label": 1, "definitions": ["krakatekoa, kirrinka.", "zurezko trepeta, gider batez gurpil hotzdun bat biraraziz hots lakarra ateratzen zaiona."], "example": "o"}
+{}
+{"word": "axo", "POS": "izena", "label": 0, "definitions": ["haragi xehatuarekin eta Ezpeletako piperrarekin prestatzen den jakia.", "antxume emea."], "example": "a"}
+{"word": "media", "POS": "izena", "label": 0, "definitions": ["galtzerdia.", "batezbestekoa."], "example": "t"}
+{}
+{"word": "jauzgailu", "POS": "izena", "label": 0, "definitions": ["jausgailua.", "eztandarazteko gailua."], "example": "a"}
+{"word": "arrantza", "POS": "izena", "label": 1, "definitions": ["arrainak harrapatzeko jarduna eta lanbidea.", "astoaren orroa."], "example": "r"}
+{"word": "puntilla", "POS": "izena", "label": 0, "definitions": ["errematea.", "parpaila."], "example": "a"}
+{"word": "borra", "POS": "izena", "label": 1, "definitions": ["hondarra, kondarra.", "mailu handia; makila moduko mota eta lodia."], "example": "a"}
+{}
+{"word": "amondu", "POS": "aditza", "label": 0, "definitions": ["amona bihurtu; zahartu.", "adiskidetu."], "example": "t"}
+{}
+{"word": "tanga", "POS": "izena", "label": 0, "definitions": ["ipurmamiak estaltzen ez dituen azpiko arropa eta bainu jantzia.", "andela, tankea."], "example": "e"}
+{"word": "zentsu", "POS": "izena", "label": 1, "definitions": ["higiezinen zerga.", "errolda."], "example": "B"}
+{}
+{"word": "postura", "POS": "izena", "label": 1, "definitions": ["gorputz jarrera.", "apustua."], "example": "."}
+{"word": "predikazio", "POS": "izena", "label": 0, "definitions": ["logikan, subjektu batez zerbait esatea.", "predikatzea, sermoia egitea."], "example": "r"}
+{"word": "itsaski", "POS": "izena", "label": 1, "definitions": ["itsasgarria, lekeda.", "itsasoa gorabehera handiz inarrosten duen higidura; meteorologian, 1.25 eta 2.50 metro bitarteko uhinak dauden itsas egoera."], "example": "r"}
+{"word": "sandia", "POS": "izena", "label": 0, "definitions": ["“urlia”-ren ondoan, beste pertsona ez mugatu bat aipatzeko erabiltzen den izena.", "angurria."], "example": "e"}
+{"word": "irain", "POS": "izena", "label": 1, "definitions": ["norbaiten izen onaren aurkako egite edo hitza.", "titiaren esnealdia."], "example": "s"}
+{"word": "pastoralgintza", "POS": "izena", "label": 1, "definitions": ["erlijio lan pastorala.", "pastoralak idaztea."], "example": "n"}
+{}
+{"word": "zerrategi", "POS": "izena", "label": 1, "definitions": ["esparrua.", "zura zerratzeko lantegia."], "example": "a"}
+{"word": "lelo", "POS": "izena", "label": 0, "definitions": ["ergela, tentela.", "hitz neurtuzko esaldia, kantetan eta, errepikatuz doana."], "example": "a"}
+{"word": "matraka", "POS": "izena", "label": 0, "definitions": ["borra.", "istilua, iskanbila."], "example": "l"}
+{"word": "auzo", "POS": "izena", "label": 0, "definitions": ["norbaitentzat, inguruko etxeren batean bizi den pertsona.", "herri batean, kaletik bereizirik dagoen etxe multzoa."], "example": "i"}
+{"word": "irrimarra", "POS": "izena", "label": 1, "definitions": ["irri-mirria.", "karikatura."], "example": "l"}
+{"word": "zeinu", "POS": "izena", "label": 0, "definitions": ["ezkila, kanpaia.", "ikurra, seinalea."], "example": "."}
+{"word": "diligentzia", "POS": "izena", "label": 1, "definitions": ["zuzemena, urratsa.", "bidaiarien garraioan erabiltzen zen zaldi orga handia."], "example": "r"}
+{}
+{"word": "hiruki", "POS": "izena", "label": 1, "definitions": ["senideez edo umeez mintzatuz, hiruko sabelaldi berean jaioa.", "hiru aldeko poligonoa."], "example": "a"}
+{"word": "ugatz", "POS": "izena", "label": 1, "definitions": ["arrano gorria, arrano hezurjalea.", "ugaztun emeen guruin esne-jariatzailea."], "example": "e"}
+{"word": "urubi", "POS": "izena", "label": 0, "definitions": ["ulua, oihua.", "hontzaren antzeko hegazti harraparia lumadi gorrikara edo griskara duena (Strix aluco)."], "example": "t"}
+{}
+{"word": "toke", "POS": "izena", "label": 1, "definitions": ["ukitua.", "joaldia."], "example": "g"}
+{"word": "kardinal", "POS": "izena", "label": 1, "definitions": ["Ameriketako txori kantaria, lumak eta mokoa gorri biziak dituena (Cardinalis kardinalis).", "Aita Santua hautatzen duten Elizako goi kargudun edo prelatuetako bakoitza."], "example": "k"}
+{"word": "giro", "POS": "izena", "label": 0, "definitions": ["igorpena.", "eguratsaren egoera."], "example": "r"}
+{"word": "urka", "POS": "izena", "label": 1, "definitions": ["urkamendia.", "antzinako itsasontzi mota zabala, fragataren antzekoa, kargarako eta gerrarako erabili zena."], "example": "o"}
+{"word": "tenia", "POS": "izena", "label": 0, "definitions": ["triglifoen azpiko ertz laua, frisoa eta arkitrabea bereiten dituena.", "zizare-nagusia."], "example": "a"}
+{"word": "metro", "POS": "izena", "label": 1, "definitions": ["hirietako garraio publikoko tren elektrikoa, gehienbat lur azpitik dabilena; garraio mota horren instalazioen multzoa.", "luzera-banako nagusia, neurri sistema hamartarraren oinarria, Paristik igarotzen den meridianoaren arabera (meridiano laurdenaren hamar-milioiena) neurtzen dena (m)."], "example": "h"}
+{"word": "krepe", "POS": "izena", "label": 1, "definitions": ["ehun arin eta fina, zeta, artile edo kotoizkoa, izurtze prozesu bat izan duena.", "esnearekin, irinarekin eta arrautzekin egiten den talo modukoa, frijitua edo errea, askotan betegarri bat biltzen duena."], "example": "g"}
+{"word": "xaxa", "POS": "izena", "label": 0, "definitions": ["tantoa.", "xaxatzea."], "example": "\""}
+{"word": "kolonia", "POS": "izena", "label": 1, "definitions": ["urez, alkoholez eta lore esentziez eginiko gai likidoa.", "atzerritar estatu baten mugetatik urrun dagoen lurraldea, ekonomikoki, administratiboki eta militarki erabat haren mende dagoena."], "example": " "}
+{"word": "berdate", "POS": "izena", "label": 0, "definitions": ["berdamena.", "eguraldi txar iraunkorra."], "example": "a"}
+{}
+{"word": "santutegi", "POS": "izena", "label": 0, "definitions": ["santu entzutetsu baten irudia edo erlikia gurtzen den eraikina.", "santuen egutegia."], "example": "z"}
+{}
+{"word": "txikito", "POS": "izena", "label": 1, "definitions": ["gizona.", "baxoerdia."], "example": "i"}
+{}
+{"word": "soberania", "POS": "izena", "label": 0, "definitions": ["gehiegia.", "subiranotasuna."], "example": "g"}
+{"word": "kosta", "POS": "izena", "label": 1, "definitions": ["saiheskia.", "itsasaldea, itsasbazterra."], "example": "r"}
+{"word": "kapital", "POS": "izena", "label": 1, "definitions": ["norbaitek duen dirua, edo diru bihur daitezkeen ondasunen multzoa; enpresa batean ezarritako dirua, edo nolanahiko korritua ematen duen dirua; etekinak edo ondasun berriak ekoiztera xedaturiko edozein ondasun; zorra osatzen duen diru kopurua.", "hiriburua."], "example": "t"}
+{}
+{"word": "plantxa", "POS": "izena", "label": 1, "definitions": ["lisagailua, lisaburdina.", "xafla."], "example": "x"}
+{"word": "horma", "POS": "izena", "label": 1, "definitions": ["izotza.", "pareta, eskuarki lodia."], "example": " "}
+{}
+{"word": "plantilla", "POS": "izena", "label": 0, "definitions": ["txantiloia.", "enpresa edo erakunde bateko langile finkoen multzoa."], "example": "e"}
+{"word": "oratu", "POS": "aditza", "label": 1, "definitions": ["heldu.", "orea egin."], "example": "e"}
+{"word": "ekipo", "POS": "izena", "label": 1, "definitions": ["taldea.", "tresneria."], "example": "e"}
+{"word": "klik", "POS": "izena", "label": 0, "definitions": ["klaskaren kideko hotsa, hura baino ahulagoa.", "airea barrurantz bultzatuz egiten den kontsonantea."], "example": "t"}
+{"word": "kota", "POS": "izena", "label": 1, "definitions": ["guduetan erabiltzen den jantzi babesgarria, larruz eta burdin sarez egina.", "muga; garaiera."], "example": "a"}
+{"word": "zinegile", "POS": "izena", "label": 1, "definitions": ["zin egiten duen pertsona.", "zinemagilea."], "example": " "}
+{"word": "parabola", "POS": "izena", "label": 0, "definitions": ["puntu finko bati eta lerro zuzen finko bati buruz distantzia berera dauden puntuek osatzen duten lerro makotu irekia.", "alegiazko gertaera baten kontakizuna, irakaspen bat gordetzen duena."], "example": "u"}
+{"word": "taloi", "POS": "izena", "label": 1, "definitions": ["orpoa.", "txekea."], "example": "a"}
+{"word": "lekatu", "POS": "aditza", "label": 1, "definitions": ["milikatu, miazkatu.", "salbuetsi."], "example": "e"}
+{"word": "diada", "POS": "izena", "label": 0, "definitions": ["elkarren artean lotura hertsia duten bi izaki edo printzipiok osatzen duten bikoa.", "Kataluniako egun nazionala."], "example": "o"}
+{"word": "trinket", "POS": "izena", "label": 1, "definitions": ["alboko bi hormak dituen pilotaleku itxia eta estalia, jokalekuaren atzealdean ere pareta duena; pilotaleku horretan jokatzen den pilota joko mota.", "belaontzietan, branka aldeko masta; masta horrretatik zintzilikatzen den bela."], "example": "a"}
+{"word": "lamina", "POS": "izena", "label": 0, "definitions": ["Euskal folkloreko izakia, emakume itxura duena.", "grabatua; batez ere, liburu batean orri osoa betetzen duena eta testutik bereiz dagoen ilustrazioa."], "example": "a"}
+{"word": "pila", "POS": "izena", "label": 0, "definitions": ["gauzak elkarren gainean edo ondoan ipinita egiten den multzoa, bereziki antolamendurik gabea.", "energia kimikoa energia elektriko bihurtzen duen generadorea."], "example": " "}
+{"word": "bando", "POS": "izena", "label": 1, "definitions": ["udalak egiten duen aldarrikapena edo ageriko iragartzea.", "aldea, alderdia."], "example": "e"}
+{}
+{}
+{}
+{}
+{}
+{"word": "marexal", "POS": "izena", "label": 0, "definitions": ["mariskala.", "albaitaria."], "example": "a"}
+{"word": "kola", "POS": "izena", "label": 0, "definitions": ["generoko landareetatik ateratzen den gai suspergarriarekin egiten den edaria.", "lekeda."], "example": "o"}
+{"word": "mate", "POS": "izena", "label": 0, "definitions": ["matematika.", "xakeko jokaldia, erregeari, ezin defenda daitekeenean, eraso jotzean datzana eta partidaren amaiera dakarrena."], "example": "e"}
+{"word": "apuratu", "POS": "aditza", "label": 1, "definitions": ["ezer gelditzen ez den arte kontsumitu.", "larritu, urduritu, estutu."], "example": "t"}
+{"word": "kabala", "POS": "izena", "label": 1, "definitions": ["juduen artean, Idazki Sakratua azaltzen zuen ahozko tradizioa.", "aberea, azienda."], "example": "K"}
+{"word": "sorburu", "POS": "izena", "label": 0, "definitions": ["jatorria, etorkia, iturburua.", "besaburua, sorbalda."], "example": "e"}
+{}
+{"word": "heste", "POS": "izena", "label": 0, "definitions": ["ixtea.", "digestio hodiaren zatia, urdailetik uzkira doana."], "example": "g"}
+{"word": "barruki", "POS": "izena", "label": 0, "definitions": ["barne itxia; korta, ukuilua.", "gorputz barrengo zatiak."], "example": "t"}
+{"word": "arrastatze", "POS": "izena", "label": 1, "definitions": ["herrestan joatea edo eramatea.", "atxiloketa."], "example": "o"}
+{"word": "musikatu", "POS": "aditza", "label": 0, "definitions": ["musikaz hornitu.", "iseka egin, trufatu."], "example": "n"}
+{"word": "broka", "POS": "izena", "label": 1, "definitions": ["pitxerra, txarroa.", "zulatzeko erabiltzen den altzairuzko tresna, mutur konikoan hari espirala duena."], "example": "a"}
+{"word": "fresa", "POS": "izena", "label": 0, "definitions": ["gastua.", "altzairuzko lanabes txiki horzduna, kono edo zilindro formakoa, biraka lan egiten duena, metalean edo zurean eginiko zuloak zabaltzeko, gainaldeak berdintzeko eta kideko lanetarako erabiltzen dena."], "example": "r"}
+{}
+{"word": "sake", "POS": "izena", "label": 0, "definitions": ["pilota jokoan eta kidekoetan, jokaldia hasteko pilota jaurtitzea.", "japoniar edari alkoholduna, arroza hartzituz egiten dena."], "example": "i"}
+{"word": "oste", "POS": "izena", "label": 1, "definitions": ["atzikiaren eskuinean;", "soldadu taldea; talde armatu bat osatzen duten pertsonak."], "example": "e"}
+{"word": "ttantta", "POS": "izena", "label": 0, "definitions": ["izeba.", "tanta."], "example": "z"}
+{}
+{"word": "trufa", "POS": "izena", "label": 0, "definitions": ["burla, iseka.", "boilurra."], "example": "p"}
+{"word": "lokatu", "POS": "aditza", "label": 0, "definitions": ["hezurrez eta kidekoez mintzatuz, bere lekutik atera.", "oiloaz eta kidekoez mintzatuz, loka jarri."], "example": "o"}
+{}
+{"word": "pastel", "POS": "izena", "label": 1, "definitions": ["koloreko pastako barra, ur, hauts eta koloregaiaz egina, margotzeko erabiltzen dena; barra horiek erabiltzen diren margotze teknika; teknika horrekin eginiko margolana.", "tamaina txikiko gozopila; tarta."], "example": "n"}
+{"word": "laka", "POS": "izena", "label": 1, "definitions": ["errotariak, ehotze lanagatik, gehienetan gari edo artotan, hartzen zuen saria.", "Indiako zuhaitz batzuetako adarretan sortzen den gai erretxinatsua, kolorez gorria; gai hori erabiliz egiten den berniz gogor eta distiratsua."], "example": "i"}
+{}
+{"word": "zanga", "POS": "izena", "label": 0, "definitions": ["hegazti palmipedoa, antzararen tamainakoa, zuria baina hego muturrak beltzak dituena, itsasertz pikoetan talde handietan bizi dena eta uretan murgilduz harrapatzen dituen arrainez elikatzen dena (Sula bassana).", "lurrean egiten den zulo luze eta meharra."], "example": "d"}
+{"word": "kala", "POS": "izena", "label": 1, "definitions": ["uretako belar landarea, gezi itxurako hostoak eta lore horiak dituena (Zantedeschia arthiopica).", "itsas zabaleko arrantza lekua."], "example": "i"}
+{"word": "bena", "POS": "izena", "label": 0, "definitions": ["zaina.", "meako zaina."], "example": " "}
+{"word": "saldo", "POS": "izena", "label": 0, "definitions": ["kontu edo balantze baten azken emaitza.", "taldea, batez ere ez-txikia."], "example": "r"}
+{}
+{"word": "bolo", "POS": "izena", "label": 1, "definitions": ["musika edo teatro saioa.", "bola."], "example": "-"}
+{"word": "partidu", "POS": "izena", "label": 1, "definitions": ["iritzi eta helburu politiko jakin bat duten pertsonak biltzen dituen erakundea.", "partida."], "example": "n"}
+{}
+{"word": "barreno", "POS": "izena", "label": 1, "definitions": ["laztabin handia.", "terreina."], "example": "i"}
+{"word": "sakatu", "POS": "aditza", "label": 1, "definitions": ["sakea atera.", "zapaldu, presioa egin."], "example": " "}
+{"word": "arrastatu", "POS": "aditza", "label": 0, "definitions": ["herrestan joan edo eraman.", "atxilotu."], "example": "e"}
+{"word": "baso", "POS": "izena", "label": 1, "definitions": ["edalontzia.", "batez ere zuhaitzez betetako lurraldea."], "example": "i"}
+{"word": "manga", "POS": "izena", "label": 1, "definitions": ["japoniar komiki mota.", "mahuka."], "example": "."}
+{}
+{}
+{"word": "hego", "POS": "izena", "label": 0, "definitions": ["hegoaldetik datorren haize beroa.", "hegaztiek, saguzarrek eta intsektuek hegan egiteko dituzten organoetako bakoitza."], "example": " "}
+{"word": "tobera", "POS": "izena", "label": 0, "definitions": ["musika edo zintzarri joaldia, andregaiari ezkontza-bezperan, berriro ezkontzen den gizon alargunari edo gorabeherak dituzten senar-emazteei egiten zaiena.", "turbina eta kidekoetan, haizebidea."], "example": "g"}
+{"word": "txanpa", "POS": "izena", "label": 1, "definitions": ["zortealdia.", "estropadetan, arraunaldi bizkorra."], "example": "a"}
+{"word": "erramu", "POS": "izena", "label": 1, "definitions": ["abar ebakia, eskuarki ereinotzarena; sorta.", "usain ezaugarrizko hosto iraunkor berde ilunak dituen zuhaitza (Laurus nobilis)."], "example": "u"}
+{}
+{"word": "inar", "POS": "izena", "label": 1, "definitions": ["ginarra, txilarra.", "txinparta, pindarra."], "example": "a"}
+{"word": "garaño", "POS": "izena", "label": 1, "definitions": ["gara, zurtoin txikia.", "ernaltzeko zaldia."], "example": "m"}
+{}
+{"word": "motatxo", "POS": "izena", "label": 0, "definitions": ["izpitxoa.", "mota."], "example": "k"}
+{"word": "jota", "POS": "izena", "label": 0, "definitions": ["Aragoiko eta Espainako beste hainbat eskualdetako herri dantza; dantza horri lagun egiten dion musika eta kantatzen diren bertsoak.", "alfabetoko letra."], "example": "e"}
+{"word": "sesio", "POS": "izena", "label": 0, "definitions": ["saioa, jardunaldia.", "istilua, liskarra."], "example": "z"}
+{"word": "koral", "POS": "izena", "label": 0, "definitions": ["ord. etab.).", "abesbatza."], "example": "i"}
+{"word": "leba", "POS": "izena", "label": 0, "definitions": ["soldadu biltzea, errekrutatzea.", "garrantzia."], "example": "r"}
+{"word": "ondo", "POS": "izena", "label": 0, "definitions": ["landare edo zuhaitzen banakoa.", "gauza bati buruz, hura ukitzen-edo dagoen aldea."], "example": "b"}
+{"word": "tirrinta", "POS": "izena", "label": 1, "definitions": ["beherakoa.", "txirrinaren hotsa."], "example": " "}
+{"word": "gangar", "POS": "izena", "label": 1, "definitions": ["gandorra.", "eztarria."], "example": "."}
+{"word": "epaile", "POS": "izena", "label": 1, "definitions": ["ebakitzen duena.", "zernahi motatako gorabehera edo auzietan, eta eskuarki lege auzietan, epaia emateko esku duen pertsona."], "example": " "}
+{"word": "lira", "POS": "izena", "label": 0, "definitions": ["antzinako musika tresna hariduna, bi eskuez jotzen zena eta ezaugarritzat bi adar kurbatu dituena.", "Italiako diru banakoa euroa ezarri zen arte."], "example": "i"}
+{"word": "huts", "POS": "izena", "label": 1, "definitions": ["lege, arau edo eginbide bat ez betetzea; ez betetze horren ondorioa.", "materia gabezia; materiarik gabeko gunea."], "example": "t"}
+{"word": "sapa", "POS": "izena", "label": 1, "definitions": ["txima.", "sargoria."], "example": "a"}
+{"word": "itsasketa", "POS": "izena", "label": 1, "definitions": ["ontzi batean itsasoz ibiltzea.", "itsastea."], "example": "t"}
+{"word": "zafra", "POS": "izena", "label": 1, "definitions": ["azukre kanaberaren uzta.", "kolpea."], "example": "a"}
+{"word": "karraska", "POS": "izena", "label": 1, "definitions": ["artea (zuhaitza); arte laparra.", "hausten edo lehertzen den zerbaiten hotsa."], "example": "K"}
+{"word": "eden", "POS": "izena", "label": 1, "definitions": ["paradisua.", "pozoia."], "example": " "}
+{}
+{"word": "salterio", "POS": "izena", "label": 1, "definitions": ["salmo liburua, salmutegia.", "Erdi Aroko zitara, erresonantzia-kutxa prismatikokoa, hatzekin edo ziriekin jotzen diren hainbat hari dituena."], "example": " "}
+{}
+{"word": "zelatu", "POS": "aditza", "label": 0, "definitions": ["zaindu, begiratu.", "zela jarri."], "example": "g"}
+{"word": "legar", "POS": "izena", "label": 0, "definitions": ["zerga.", "ibai eta itsas ertzeko harru-koskorra, eta bereziki horien multzoa; harri xehatua, bideetan eta, ezartzen dena."], "example": "r"}
+{"word": "lera", "POS": "izena", "label": 0, "definitions": ["gurpilik gabeko orga, bi albo oholen bidez irristatzen dena, elur gainean ibiltzeko, edo belarra-eta garraiatzeko toki malkartsuetan erabiltzen dena.", "joera bizia, grina."], "example": "r"}
+{"word": "enpaste", "POS": "izena", "label": 1, "definitions": ["ahotsaren nolakotasun desberdinak egoki batzea; batze horren ondorioa.", "hortz-haginetako zuloak pastaz betetzea; zulo hori betetzen duen pasta."], "example": "i"}
+{}
+{"word": "pintxo", "POS": "izena", "label": 0, "definitions": ["labana edo kidekoa.", "ziri-mokadua."], "example": "l"}
+{"word": "bokata", "POS": "izena", "label": 0, "definitions": ["lixibatzea; batera lixibatzen den arropa.", "ogitartekoa."], "example": "a"}
+{"word": "bis", "POS": "izena", "label": 1, "definitions": ["kontzertu edo kideko batean, hura bukatzean eta gehigarri bezala eskaintzen den pieza.", "bisean bisekoa."], "example": "r"}
+{"word": "jauste", "POS": "izena", "label": 0, "definitions": ["erortzea.", "jaistea."], "example": "t"}
+{"word": "ahalmen", "POS": "izena", "label": 1, "definitions": ["aingeruen sailkapeneko maila baten izena.", "zerbait egiteko ahala, eskua edo gaitasuna."], "example": "l"}
+{"word": "mimo", "POS": "izena", "label": 0, "definitions": ["egintzak keinuen bidez irudikatzen dituen artista.", "maitasun edo txera adierazpena."], "example": "u"}
+{}
+{"word": "hazienda", "POS": "izena", "label": 0, "definitions": ["ogasuna.", "nekazaritza etxaldea."], "example": "s"}
+{}
+{"word": "saka", "POS": "izena", "label": 0, "definitions": ["zakua.", "pilota-jokoan, sakatzea."], "example": "s"}
+{}
+{"word": "zerratu", "POS": "aditza", "label": 1, "definitions": ["itxi.", "zerraz ebaki."], "example": "z"}
+{"word": "benta", "POS": "izena", "label": 0, "definitions": ["bide-bazterrean edo bidegurutze batean herribilduetatik at dagoen ostatua.", "salmenta."], "example": "t"}
+{"word": "pentsu", "POS": "izena", "label": 1, "definitions": ["gogoeta, pentsamendua.", "abereen bazka, bereziki lehorra."], "example": "o"}
+{"word": "muble", "POS": "izena", "label": 1, "definitions": ["korrokoia.", "altzaria."], "example": ","}
+{"word": "mantxa", "POS": "izena", "label": 1, "definitions": ["kirol norgehiagoka edo lasterketa batzuk banatzen diren zati berdinetako bakoitza.", "orbana, narrioa."], "example": "a"}
+{"word": "txorta", "POS": "izena", "label": 0, "definitions": ["sorta.", "larru jotzea."], "example": "u"}
+{"word": "marko", "POS": "izena", "label": 0, "definitions": ["urrezko edo zilarrezko zenbait diruren izena.", "ispilu, margolan edo kideko bat bat inguratzen duen armazoia edo egitura finkoa."], "example": " "}
+{"word": "pasmo", "POS": "izena", "label": 0, "definitions": ["harridura bizia.", "infekzioa."], "example": " "}
+{"word": "sari", "POS": "izena", "label": 1, "definitions": ["emakumeen jantzi luzea, berez Indiakoa.", "egin den lanaren, egintza onaren edo zerbitzuaren ordaintzat hartzen den ondasuna."], "example": " "}
+{"word": "xalant", "POS": "izena", "label": 0, "definitions": ["galaia.", "txanela."], "example": "u"}
+{"word": "tirrin", "POS": "izena", "label": 1, "definitions": ["txirrinaren hotsa.", "kaka arin eta urtsua."], "example": " "}
+{}
+{}
+{}
